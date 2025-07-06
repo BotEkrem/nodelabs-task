@@ -1,0 +1,355 @@
+{
+	"info": {
+		"_postman_id": "9b43fdeb-3841-412d-aacf-dccad45f50d7",
+		"name": "NodeLabs Task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35946711"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/auth-module/api/auth/me",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth-module",
+								"api",
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Deneme2\",\r\n    \"password\": \"14789632Qwe!\",\r\n    \"confirmPassword\": \"14789632Qwe!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/auth-module/api/auth/register",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth-module",
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Deneme2\",\r\n    \"password\": \"14789632Qwe!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/auth-module/api/auth/login",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth-module",
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/auth-module/api/auth/logout",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth-module",
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/auth-module/api/auth/refresh",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"auth-module",
+								"api",
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/user-module/api/user/list",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"user-module",
+								"api",
+								"user",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Online Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/user-module/api/user/online",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"user-module",
+								"api",
+								"user",
+								"online"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Conversation",
+			"item": [
+				{
+					"name": "Get User Conversations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/conversations-module/api/conversations",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"conversations-module",
+								"api",
+								"conversations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Conversation",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"participant\": \"686abe248ba56c91c6a0e723\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/conversations-module/api/conversations/create",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"conversations-module",
+								"api",
+								"conversations",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "Send",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"conversationId\": \"686abe5ac133d2b85fbab138\",\r\n    \"content\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{domain}}/messages-module/api/messages/send",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"messages-module",
+								"api",
+								"messages",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Conversation Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/messages-module/api/messages/686abe5ac133d2b85fbab138",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"messages-module",
+								"api",
+								"messages",
+								"686abe5ac133d2b85fbab138"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read Message",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmFiZTI0OGJhNTZjOTFjNmEwZTcyMyIsInVzZXJuYW1lIjoiRGVuZW1lMiIsImlhdCI6MTc1MTgyNjEyMywiZXhwIjoxNzUxODI5NzIzfQ.b2QWqnUEqDs4i0QPjqypvaJOeKNESS0I9YTRVIO5Fk8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{domain}}/messages-module/api/messages/686abe704d57785f3d5571e7/read",
+							"host": [
+								"{{domain}}"
+							],
+							"path": [
+								"messages-module",
+								"api",
+								"messages",
+								"686abe704d57785f3d5571e7",
+								"read"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NmFkOWE0YzQwZjQ5MjAxNTdlODdhYiIsInVzZXJuYW1lIjoiRGVuZW1lMiIsImlhdCI6MTc1MTgzMzAwMSwiZXhwIjoxNzUxODM2NjAxfQ.0T_BZcbCCXTpxlurWItK8zw4jRzhzfLMhXJFU5Cf1Wk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://kubernetes.docker.internal",
+			"type": "string"
+		}
+	]
+}

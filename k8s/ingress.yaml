@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: multi-module-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/$2"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "60"
+    nginx.ingress.kubernetes.io/proxy-http-version: "1.1"
+spec:
+  rules:
+    - host: kubernetes.docker.internal
+      http:
+        paths:
+          - path: /auth-module(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: auth-service
+                port:
+                  number: 5354
+          - path: /user-module(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: user-service
+                port:
+                  number: 5354
+          - path: /conversations-module(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: conversation-service
+                port:
+                  number: 5354
+          - path: /messages-module(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: message-service
+                port:
+                  number: 5354
+          - path: /base-module(/|$)(.*)
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: base-service
+                port:
+                  number: 5354

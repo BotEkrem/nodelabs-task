@@ -1,0 +1,126 @@
+version: '3'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+  redis:
+    image: redis:7
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    networks:
+      - app-network
+
+  auth-service:
+    build: ..
+    container_name: auth-service
+    environment:
+      - MODULE=AUTH
+    ports:
+      - "3001:5354"
+    depends_on:
+      - mongo
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+
+  message-service:
+    build: ..
+    container_name: message-service
+    environment:
+      - MODULE=MESSAGES
+    ports:
+      - "3002:5354"
+    depends_on:
+      - mongo
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+
+  conversation-service:
+    build: ..
+    container_name: conversation-service
+    environment:
+      - MODULE=CONVERSATIONS
+    ports:
+      - "3003:5354"
+    depends_on:
+      - mongo
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+
+  user-service:
+    build: ..
+    container_name: user-service
+    environment:
+      - MODULE=USER
+    ports:
+      - "3004:5354"
+    depends_on:
+      - mongo
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+
+  base-service:
+    build: ..
+    container_name: base-service
+    environment:
+      - MODULE=BASE
+    ports:
+      - "3000:5354"
+    depends_on:
+      - mongo
+      - redis
+      - rabbitmq
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-network
+
+volumes:
+  mongo_data:
+
+networks:
+  app-network:
+
+
