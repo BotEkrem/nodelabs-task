@@ -38,7 +38,7 @@ services:
       - app-network
 
   auth-service:
-    build: ..
+    build: .
     container_name: auth-service
     environment:
       - MODULE=AUTH
@@ -52,7 +52,7 @@ services:
       - app-network
 
   message-service:
-    build: ..
+    build: .
     container_name: message-service
     environment:
       - MODULE=MESSAGES
@@ -66,7 +66,7 @@ services:
       - app-network
 
   conversation-service:
-    build: ..
+    build: .
     container_name: conversation-service
     environment:
       - MODULE=CONVERSATIONS
@@ -80,7 +80,7 @@ services:
       - app-network
 
   user-service:
-    build: ..
+    build: .
     container_name: user-service
     environment:
       - MODULE=USER
@@ -94,7 +94,7 @@ services:
       - app-network
 
   base-service:
-    build: ..
+    build: .
     container_name: base-service
     environment:
       - MODULE=BASE
